@@ -10,8 +10,22 @@ order by Number_of_orders desc
 limit 10;
 
 
+--------------------
 
+SELECT emp.firstname AS Employee_FirstName, emp.lastname AS Employee_LastName, 
+       COALESCE(sum(odd.quantity), 0) AS Sold_Most_Beverages
+FROM w3schools.employees AS emp
+inner JOIN w3schools.orders AS ord ON emp.EmployeeID = ord.EmployeeID
 
+inner JOIN w3schools.order_details AS odd ON odd.OrderID = ord.OrderID
+inner JOIN w3schools.products AS prd ON odd.productid = prd.ProductID
+inner JOIN w3schools.categories AS cat ON prd.CategoryID = cat.CategoryID and cat.CategoryName = "beverages"
+-- WHERE cat.categoryid = "1" --
+-- where 
+GROUP BY emp.employeeid
+ORDER BY Sold_Most_Beverages DESC
+LIMIT 10;
+--------------------
 select emp.firstname as Employee_FirstName, emp.lastname as Employee_LastName, 
 -- COALESCE(sum(odd.quantity), 0) as Sold_Most_Beverages
 case when sum(odd.quantity) is NULL then 0 
