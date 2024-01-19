@@ -24,14 +24,3 @@ right join w3schools.employees as emp on emp.EmployeeID = ord.EmployeeID
 group by emp.employeeid
 order by sold_most_beverages desc
 limit 10;
-
---------------------
-select emp.firstname as Employee_FirstName, emp.lastname as Employee_LastName, 
-COALESCE(sum(odd.quantity), 0) as Sold_Most_Beverages
-from w3schools.employees as emp
-left join w3schools.orders as ord on emp.EmployeeID = ord.EmployeeID
-left join w3schools.order_details as odd on odd.OrderID = ord.OrderID
-right join w3schools.products as prd on odd.productid = prd.ProductID
-where prd.CategoryID in (select cat.CategoryID from w3schools.categories as cat where cat.CategoryName = "beverages")
-group by emp.employeeid
-order by sold_most_beverages desc;
