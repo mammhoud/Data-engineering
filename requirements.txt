@@ -1,0 +1,11 @@
+requests
+beautifulsoup4
+scrapy
+autoviz
+pandas_profiling
+datatile
+seaborn
+matplotlib
+pandas
+numpy
+scikit-learn
